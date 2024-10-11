@@ -41,16 +41,16 @@ export default function Assassin() {
 
   const createGame = () => {
     const AssassinPlayers: AssassinProps[] = [];
-
     const shuffledPlayers = shuffleArray([...players]) as string[];
 
     for (let i = 0; i < shuffledPlayers.length; i++) {
       let target = "";
 
       if (i < numberOfAssassins) {
-        const availablePlayers = shuffledPlayers.filter((p) =>
-          suicideMode ? p !== shuffledPlayers[i] : true
-        ) as string[];
+        // Filter out the current player, regardless of suicideMode
+        const availablePlayers = shuffledPlayers.filter(
+          (p) => p !== shuffledPlayers[i]
+        );
 
         target =
           availablePlayers[Math.floor(Math.random() * availablePlayers.length)];
