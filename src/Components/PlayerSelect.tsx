@@ -75,6 +75,13 @@ export default function PlayerSelect({
           onChange={(e) => {
             setNewPlayer(e.currentTarget.value);
           }}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              if (newPlayer === "") return;
+              setPlayers([...players, newPlayer]);
+              setNewPlayer("");
+            }
+          }}
           value={newPlayer}
           style={{
             height: "35px",

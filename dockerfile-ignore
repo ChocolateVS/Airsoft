@@ -1,0 +1,14 @@
+FROM node:20.15.0-alpine AS build
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
+
+FROM node:20.15.0-alpine
+WORKDIR /app
+COPY tsconfig.json .
+COPY ./static .
+COPY proxy.json .
+COPY --from=build /app/dist .
+RUN npm install
+CMD ["node", "serve.cjs"]

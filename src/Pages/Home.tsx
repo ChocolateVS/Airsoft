@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <div
       style={{
@@ -11,7 +15,9 @@ export default function Home() {
       }}
     >
       <a
-        href="/mafia"
+        onClick={() => {
+          navigate("/mafia");
+        }}
         target="_blank"
         style={{
           maxWidth: "500px",
@@ -29,7 +35,9 @@ export default function Home() {
       </a>
 
       <a
-        href="/assassin"
+        onClick={() => {
+          navigate("/assassin");
+        }}
         target="_blank"
         style={{
           maxWidth: "500px",
