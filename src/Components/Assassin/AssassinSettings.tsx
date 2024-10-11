@@ -6,6 +6,8 @@ interface AssassinSettingsProps {
   setScuffedMode: (scuffedMode: boolean) => void;
   suicideMode: boolean;
   setSuicideMode: (suicideMode: boolean) => void;
+  randomAssassin: boolean;
+  setRandomAssassin: (randomAssassin: boolean) => void;
   prev: () => void;
   next: () => void;
 }
@@ -18,6 +20,8 @@ export default function AssassinSettings({
   setScuffedMode,
   suicideMode,
   setSuicideMode,
+  randomAssassin,
+  setRandomAssassin,
   prev,
   next,
 }: AssassinSettingsProps) {
@@ -84,6 +88,17 @@ export default function AssassinSettings({
             }}
           >
             +
+          </button>
+          {/* Toggle random assassin */}
+          <button
+            onClick={() => {
+              setRandomAssassin(!randomAssassin);
+            }}
+            style={{
+              backgroundColor: randomAssassin ? "green" : "red",
+            }}
+          >
+            Random
           </button>
         </div>
       </div>

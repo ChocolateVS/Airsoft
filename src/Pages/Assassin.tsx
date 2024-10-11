@@ -31,6 +31,7 @@ export default function Assassin() {
 
   const [mode, setMode] = useState<AssassinModes | null>(null);
 
+  const [randomAssassin, setRandomAssassin] = useState<boolean>(false);
   const [numberOfAssassins, setNumberOfAssassins] = useState<number>(1);
   const [suicideMode, setSuicideMode] = useState<boolean>(false);
   const [scuffedMode, setScuffedMode] = useState<boolean>(false);
@@ -43,10 +44,13 @@ export default function Assassin() {
     const AssassinPlayers: AssassinProps[] = [];
     const shuffledPlayers = shuffleArray([...players]) as string[];
 
+    const numAssassins = randomAssassin
+      ? Math.floor(Math.random() * numberOfAssassins) + 1
+      : numberOfAssassins;
     for (let i = 0; i < shuffledPlayers.length; i++) {
       let target = "";
 
-      if (i < numberOfAssassins) {
+      if (i < numAssassins) {
         // Filter out the current player, regardless of suicideMode
         const availablePlayers = shuffledPlayers.filter(
           (p) => p !== shuffledPlayers[i]
@@ -70,6 +74,8 @@ export default function Assassin() {
     console.log("");
     console.log("Game created");
     console.log("Number of Assassins", numberOfAssassins);
+    console.log("Random Assassin", randomAssassin);
+    console.log("Random Assassins Num", numAssassins);
     console.log("Suicide Enabled", suicideMode);
     console.log("Scuffed", scuffedMode);
     console.log(AssassinPlayers);
@@ -136,6 +142,8 @@ export default function Assassin() {
           players={players}
           numberOfAssassins={numberOfAssassins}
           setNumberOfAssassins={setNumberOfAssassins}
+          setRandomAssassin={setRandomAssassin}
+          randomAssassin={randomAssassin}
           scuffedMode={scuffedMode}
           setScuffedMode={setScuffedMode}
           suicideMode={suicideMode}
